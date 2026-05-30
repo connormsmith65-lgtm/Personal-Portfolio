@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connor Smith — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark:    #0C0C0C;
+      --bg-light:   #F0EDE7;
+      --bg-mid:     #E4E0D8;
+      --steel:      #9EA3A8;
+      --sand:       #C8B89A;
+      --border:     #0C0C0C;
+      --text-dark:  #0C0C0C;
+      --text-light: #F0EDE7;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* Concrete grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ─── NAV ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 46px;
+      background: var(--bg-dark);
+      border-bottom: 1px solid rgba(158,163,168,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.3em;
+      color: var(--text-light);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--steel);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--text-light); }
+    .nav-links a:active { color: var(--sand); }
+
+    /* ─── HERO ────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--bg-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 3rem 3.5rem;
+      padding-top: 7rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--steel);
+    }
+
+    /* subtle grid */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(158,163,168,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(158,163,168,0.05) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    /* avif texture */
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background: url('brand_assets/abstract-off-white-gradient-color-blur-effect-white-background-wallpaper-design_1259814-623.avif') center/cover no-repeat;
+      opacity: 0.04;
+      mix-blend-mode: screen;
+    }
+
+    .hero-side-text {
+      position: absolute;
+      right: 2.6rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: center;
+      font-size: 0.52rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(158,163,168,0.35);
+      white-space: nowrap;
+    }
+
+    .hero-year {
+      position: absolute;
+      left: 3rem;
+      top: 6.5rem;
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      color: rgba(158,163,168,0.3);
+    }
+
+    .hero-bottom-row {
+      display: flex;
+      align-items: flex-end;
+      gap: clamp(1.5rem, 3vw, 3.5rem);
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(82px, 16.5vw, 230px);
+      line-height: 0.86;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+      background: linear-gradient(
+        132deg,
+        #505050 0%,
+        #b8b8b8 18%,
+        #787878 34%,
+        #d6d6d6 50%,
+        #8a8a8a 66%,
+        #c4c4c4 82%,
+        #606060 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-chart {
+      flex: 1;
+      min-width: 0;
+      display: block;
+      align-self: stretch;
+    }
+
+    .hero-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--steel), transparent);
+      margin: 2rem 0 1.6rem;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-tagline {
+      font-size: 0.62rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--steel);
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1.4rem;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .hero-contact a {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: var(--sand);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,184,154,0.28);
+      padding-bottom: 2px;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .hero-contact a:hover { color: var(--text-light); border-color: var(--text-light); }
+    .hero-contact a:focus-visible { outline: 1px solid var(--sand); outline-offset: 3px; }
+
+    .hero-sig {
+      position: absolute;
+      right: 4rem;
+      bottom: 3.5rem;
+      width: 240px;
+      filter: invert(1);
+      opacity: 0.1;
+      z-index: 2;
+      pointer-events: none;
+      animation: fadeUp 0.9s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* ─── SECTION BASE ────────────────────── */
+    .section {
+      position: relative;
+      padding: 7rem 3rem 8rem;
+      border-bottom: 2px solid var(--border);
+      overflow: hidden;
+    }
+    .section-alt { background: var(--bg-mid); }
+    .section-dark {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .section-ghost {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(130px, 21vw, 320px);
+      position: absolute;
+      top: -0.08em;
+      right: -0.03em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0,0,0,0.055);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .section-dark .section-ghost {
+      -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+    }
+
+    .section-eyebrow {
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--steel);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--steel);
+      opacity: 0.35;
+      max-width: 200px;
+    }
+
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(54px, 8.5vw, 110px);
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      margin-bottom: 4.5rem;
+    }
+
+    /* ─── REVEAL ──────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ─── EDUCATION ───────────────────────── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+    }
+
+    .edu-card {
+      border: 2px solid var(--border);
+      border-top: 4px solid var(--steel);
+      padding: 2.8rem;
+      background: var(--bg-light);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.2s ease;
+    }
+    .edu-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 5px 5px 0 var(--border);
+    }
+    .edu-card:nth-child(2) { border-top-color: var(--sand); }
+
+    .edu-tag {
+      font-size: 0.56rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--steel);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+    }
+    .edu-tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--steel);
+    }
+
+    .edu-school {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-degree {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 300;
+      font-size: 0.78rem;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 1.4rem;
+    }
+
+    .edu-meta {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--steel);
+      line-height: 1.9;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--border);
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+      margin-right: 0.5rem;
+    }
+    .badge-gpa .badge-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+    .badge-honor {
+      border-color: var(--sand);
+      color: #8a6a40;
+    }
+
+    /* ─── EXPERIENCE ──────────────────────── */
+    .exp-list { display: flex; flex-direction: column; }
+
+    .exp-item {
+      border: 2px solid var(--border);
+      border-bottom: none;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      background: var(--bg-light);
+      transition: background 0.2s;
+    }
+    .exp-item:last-child { border-bottom: 2px solid var(--border); }
+    .exp-item:hover { background: #ece8e1; }
+
+    .exp-left {
+      padding: 2.4rem 2.5rem;
+      border-right: 2px solid rgba(0,0,0,0.12);
+      position: relative;
+    }
+    .exp-item:nth-child(odd) .exp-left { border-left: 4px solid var(--steel); }
+    .exp-item:nth-child(even) .exp-left { border-left: 4px solid var(--sand); }
+    .exp-right {
+      padding: 2.4rem 2.8rem;
+    }
+
+    .exp-company {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+    }
+    .exp-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 300;
+      font-size: 0.72rem;
+      color: #555;
+      margin-bottom: 1.1rem;
+    }
+    .exp-date {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--steel);
+      line-height: 1.7;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      padding-top: 0.2rem;
+    }
+    .exp-bullets li {
+      font-size: 0.7rem;
+      line-height: 1.75;
+      padding-left: 1.3rem;
+      position: relative;
+      color: #1a1a1a;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--steel);
+    }
+
+    /* ─── LEADERSHIP ──────────────────────── */
+    .lead-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+
+    .lead-card {
+      border: 2px solid rgba(158,163,168,0.2);
+      padding: 2.4rem;
+      background: #111111;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.2s ease;
+    }
+    .lead-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 5px 5px 0 var(--steel);
+    }
+    .lead-card:focus-within { outline: 2px solid var(--sand); }
+
+    .lead-card-loc {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.4rem;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: rgba(158,163,168,0.45);
+      text-transform: uppercase;
+    }
+
+    .lead-org-tag {
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      color: var(--steel);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .lead-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+      margin-top: 0.8rem;
+    }
+
+    .lead-title-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--sand);
+      margin-bottom: 0.5rem;
+    }
+
+    .lead-date {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(158,163,168,0.5);
+      margin-bottom: 1.5rem;
+    }
+
+    .lead-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .lead-bullets li {
+      font-size: 0.64rem;
+      line-height: 1.7;
+      color: rgba(240,237,231,0.62);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .lead-bullets li::before {
+      content: '/';
+      position: absolute;
+      left: 0;
+      color: var(--sand);
+    }
+
+    /* ─── CERTIFICATIONS ──────────────────── */
+    .cert-grid {
+      display: flex;
+      gap: 3px;
+      align-items: flex-start;
+    }
+
+    .cert-card {
+      flex: 1;
+      min-width: 0;
+      min-height: 13rem;
+      border: 2px solid var(--border);
+      padding: 2.8rem 2.8rem 2.8rem 2.4rem;
+      border-left: 4px solid var(--steel);
+      background: var(--bg-light);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      position: relative;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.2s ease;
+    }
+    .cert-card:nth-child(3) { border-left-color: var(--sand); }
+    .cert-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 5px 5px 0 var(--border);
+    }
+
+    .cert-num {
+      position: absolute;
+      bottom: -0.15em;
+      right: -0.05em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7rem;
+      line-height: 1;
+      color: rgba(0,0,0,0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ─── GLOBE ───────────────────────────── */
+    .edu-globe {
+      display: block;
+      width: 100%;
+      cursor: grab;
+      margin-bottom: 5rem;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    .edu-globe:active { cursor: grabbing; }
+
+    .cert-issuer {
+      font-size: 0.56rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .cert-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      min-height: calc(1.35rem * 1.15 * 2);
+    }
+
+    .cert-btn {
+      margin-top: auto;
+      padding-top: 1.6rem;
+      align-self: flex-start;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--steel);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .cert-btn:hover {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+    .cert-btn:focus-visible {
+      outline: 2px solid var(--steel);
+      outline-offset: 2px;
+    }
+
+    .cert-img-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding-top 0.5s ease;
+      padding-top: 0;
+    }
+    .cert-img-wrap.open {
+      max-height: 700px;
+      padding-top: 1.2rem;
+    }
+    .cert-img-wrap img {
+      width: 100%;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    /* ─── LIGHTBOX ────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,12,12,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      transform: scale(0.94);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .lightbox.open .lightbox-inner {
+      transform: scale(1);
+    }
+    .lightbox-inner img {
+      display: block;
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      color: var(--text-light);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .lightbox-close:hover {
+      background: var(--steel);
+      color: var(--bg-dark);
+    }
+
+    /* ─── FOOTER ──────────────────────────── */
+    footer {
+      background: var(--bg-dark);
+      border-top: 2px solid rgba(158,163,168,0.2);
+      padding: 4.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      letter-spacing: 0.06em;
+      background: linear-gradient(
+        132deg,
+        #505050 0%, #b8b8b8 20%,
+        #787878 40%, #d6d6d6 55%,
+        #8a8a8a 70%, #c4c4c4 85%,
+        #606060 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-sig {
+      width: 180px;
+      filter: invert(1);
+      opacity: 0.45;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+    }
+    .footer-links a {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--steel);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--sand); }
+
+    /* ─── ANIMATIONS ──────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ─── RESPONSIVE ──────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { gap: 1.4rem; }
+      .section { padding: 5rem 1.5rem 6rem; }
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .hero-sig { display: none; }
+      .hero-side-text { display: none; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-left { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
+      .lead-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr 1fr; }
+      footer { grid-template-columns: 1fr; }
+      .footer-links { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">CS</span>
+  <div class="nav-links">
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#certifications">Credentials</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <span class="hero-year">© 2026</span>
+
+  <div class="hero-bottom-row">
+    <h1 class="hero-name">CONNOR<br>SMITH</h1>
+    <canvas id="hero-chart" class="hero-chart"></canvas>
+  </div>
+
+  <div class="hero-rule"></div>
+
+  <p class="hero-tagline">Babson College &nbsp;·&nbsp; BS Business Administration &nbsp;·&nbsp; Finance &amp; Economics</p>
+
+  <div class="hero-contact">
+    <a href="tel:+17207656892">(720) 765-6892</a>
+    <a href="mailto:csmith11@babson.edu">csmith11@babson.edu</a>
+    <a href="https://www.linkedin.com/in/connor-smith134" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a tabindex="-1" style="cursor:default;">Park City, UT</a>
+  </div>
+
+  <img src="brand_assets/signature.png" alt="Connor Smith signature" class="hero-sig">
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <span class="section-ghost" aria-hidden="true">01</span>
+  <p class="section-eyebrow reveal">01 / Education</p>
+  <h2 class="section-heading reveal">EDUCATION</h2>
+
+  <canvas id="edu-globe" class="edu-globe reveal"></canvas>
+
+  <div class="edu-grid">
+    <div class="edu-card reveal reveal-d1">
+      <div class="edu-tag">Primary Institution</div>
+      <h3 class="edu-school">Babson College<br>School of Business</h3>
+      <p class="edu-degree">Bachelor of Science in Business Administration<br>Concentration in Finance and Economics</p>
+      <div class="edu-meta">
+        Wellesley, MA &nbsp;·&nbsp; Expected Graduation May 2028<br>
+        <br>Ranked #1 for Undergraduate Entrepreneurship — US News &amp; World Report<br>
+        Ranked as the 2nd Best College in the U.S. — The Wall Street Journal
+      </div>
+      <div style="margin-top:1.6rem; display:flex; flex-wrap:wrap; gap:0.5rem;">
+        <span class="badge badge-gpa">GPA &nbsp;<span class="badge-val">3.85</span>&nbsp;/ 4.00</span>
+        <span class="badge badge-honor">★ Dean's List — Every Semester</span>
+      </div>
+    </div>
+
+    <div class="edu-card reveal reveal-d2" style="background:var(--bg-mid);">
+      <div class="edu-tag">Exchange</div>
+      <h3 class="edu-school">Universität<br>St. Gallen (HSG)</h3>
+      <p class="edu-degree">Incoming Exchange Student</p>
+      <div class="edu-meta">
+        St. Gallen, Switzerland<br>
+        September 2026 – May 2027<br>
+        <br>Ranked #8 among European Business Schools — Financial Times
+      </div>
+      <div style="margin-top:1.6rem;">
+        <span class="badge badge-honor">★ One of Three Selected</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section section-alt" id="experience">
+  <span class="section-ghost" aria-hidden="true">02</span>
+  <p class="section-eyebrow reveal">02 / Professional Experience</p>
+  <h2 class="section-heading reveal">EXPERIENCE</h2>
+
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <h3 class="exp-company">DW Healthcare Partners</h3>
+        <p class="exp-role">Private Equity Analyst</p>
+        <p class="exp-date">May 2026 – July 2026<br>Park City, UT</p>
+      </div>
+      <div class="exp-right">
+        <ul class="exp-bullets">
+          <li>Build 3-statement, DCF, M&amp;A, and LBO models to support investment decisions at a $2.7B+ AUM private equity firm</li>
+          <li>Research and analyze healthcare subsectors to drive due diligence and investment decisions across a 100+ company portfolio</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <h3 class="exp-company">Kitchin</h3>
+        <p class="exp-role">Contracted Software Development</p>
+        <p class="exp-date">December 2025 – March 2026<br>Park City, UT</p>
+      </div>
+      <div class="exp-right">
+        <ul class="exp-bullets">
+          <li>Consulted on front-end systems and refined 10+ UI/UX components to improve user experience for a $30M-valued nutrition app</li>
+          <li>Developed iOS features in Swift using Xcode, leveraging AI-assisted coding tools to accelerate front-end development timelines</li>
+          <li>Collaborated with a developer via GitHub for version control and branch management, contributing to a seamless app launch</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <h3 class="exp-company">Plai</h3>
+        <p class="exp-role">Co-Founder</p>
+        <p class="exp-date">September 2024 – November 2025<br>Park City, UT</p>
+      </div>
+      <div class="exp-right">
+        <ul class="exp-bullets">
+          <li>Co-led development of the first music platform dedicated to AI-generated content streaming for artists and listeners</li>
+          <li>Utilized LLM models to code front and back-end features of an app for Android and iOS systems in React Native and JavaScript</li>
+          <li>Designed UI/UX for web and mobile platforms in Figma and led competitor analysis across major music streaming platforms</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <h3 class="exp-company">Babson Urban Collective</h3>
+        <p class="exp-role">CFO</p>
+        <p class="exp-date">August 2024 – May 2025<br>Wellesley, MA</p>
+      </div>
+      <div class="exp-right">
+        <ul class="exp-bullets">
+          <li>Directed the finance team for a student-run apparel venture at Babson, driving $11,000+ in revenue within three months of launch</li>
+          <li>Managed financial models in Excel to track inventory, sales, expenditures, and cash flow to optimize pricing and margins</li>
+          <li>Integrated payment platforms including Shopify, PayPal, Venmo, and Square, reconciling transactions into financial statements</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section section-dark" id="leadership">
+  <span class="section-ghost" aria-hidden="true">03</span>
+  <p class="section-eyebrow reveal" style="color:var(--steel);">03 / Leadership &amp; Activities</p>
+  <h2 class="section-heading reveal" style="color:var(--text-light);">LEADERSHIP</h2>
+
+  <div class="lead-grid">
+    <div class="lead-card reveal reveal-d1">
+      <div class="lead-card-loc">Wellesley, MA</div>
+      <div class="lead-org-tag">Babson Alternative Investments Association</div>
+      <h3 class="lead-role">VP of Communications<br>Digital Assets</h3>
+      <p class="lead-title-sub">Vice President</p>
+      <p class="lead-date">January 2026 – Present</p>
+      <ul class="lead-bullets">
+        <li>Launched a weekly newsletter on tokenization, De-Fi, and bitcoin trends to 400+ subscribers</li>
+        <li>Design and execute multi-channel marketing campaigns across Instagram and LinkedIn</li>
+        <li>Recruit guest speakers and moderate fireside chats drawing 60–80 attendees per event</li>
+      </ul>
+    </div>
+
+    <div class="lead-card reveal reveal-d2" style="background:#141414;">
+      <div class="lead-card-loc">Wellesley, MA</div>
+      <div class="lead-org-tag">Sigma Phi Epsilon</div>
+      <h3 class="lead-role">Professional<br>Development</h3>
+      <p class="lead-title-sub">Co-Director</p>
+      <p class="lead-date">January 2026 – Present</p>
+      <ul class="lead-bullets">
+        <li>Connected 60+ members with a network of 20 alumni industry professionals</li>
+        <li>Facilitate workshops on resume writing, LinkedIn profile optimization, and networking</li>
+        <li>Spearhead networking events to strengthen alumni-member engagement</li>
+      </ul>
+    </div>
+
+    <div class="lead-card reveal reveal-d3" style="background:#0e0e0e;">
+      <div class="lead-card-loc">Wellesley, MA</div>
+      <div class="lead-org-tag">SPACE Program</div>
+      <h3 class="lead-role">Strategy &amp;<br>Consulting</h3>
+      <p class="lead-title-sub">Fellow</p>
+      <p class="lead-date">September 2025 – December 2025</p>
+      <ul class="lead-bullets">
+        <li>Selected as one of twelve students in a highly competitive cohort</li>
+        <li>Gained expertise in market sizing, profitability analysis, and case interviewing</li>
+        <li>Received mentorship from industry consultants on client engagement strategies</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section section-alt" id="certifications">
+  <span class="section-ghost" aria-hidden="true">04</span>
+  <p class="section-eyebrow reveal">04 / Credentials</p>
+  <h2 class="section-heading reveal">CREDENTIALS</h2>
+
+  <div class="cert-grid">
+    <div class="cert-card reveal reveal-d1">
+      <span class="cert-num" aria-hidden="true">01</span>
+      <span class="cert-issuer">Wall Street Prep</span>
+      <span class="cert-name">Financial Statement Modeling</span>
+      <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
+      <div class="cert-img-wrap">
+        <img src="assets/three-statement-model.png" alt="Financial Statement Modeling Certificate">
+      </div>
+    </div>
+    <div class="cert-card reveal reveal-d2">
+      <span class="cert-num" aria-hidden="true">02</span>
+      <span class="cert-issuer">Wall Street Prep</span>
+      <span class="cert-name">Discounted Cash Flow Valuation</span>
+      <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
+      <div class="cert-img-wrap">
+        <img src="assets/dcf.png" alt="Discounted Cash Flow Valuation Certificate">
+      </div>
+    </div>
+    <div class="cert-card reveal reveal-d3">
+      <span class="cert-num" aria-hidden="true">03</span>
+      <span class="cert-issuer">Johns Hopkins University</span>
+      <span class="cert-name">Excel Basics</span>
+      <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
+      <div class="cert-img-wrap">
+        <img src="assets/excel.png" alt="Excel Basics Certificate">
+      </div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.32s;">
+      <span class="cert-num" aria-hidden="true">04</span>
+      <span class="cert-issuer">Wall Street Prep</span>
+      <span class="cert-name">LBO Modeling</span>
+      <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
+      <div class="cert-img-wrap">
+        <img src="https://placehold.co/800x560/F0EDE7/9EA3A8?text=Certificate+Coming+Soon" alt="LBO Modeling Certificate">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Connor Smith</span>
+  <img src="brand_assets/signature.png" alt="Connor Smith signature" class="footer-sig">
+  <div class="footer-links">
+    <a href="tel:+17207656892">(720) 765-6892</a>
+    <a href="mailto:csmith11@babson.edu">csmith11@babson.edu</a>
+    <a href="https://www.linkedin.com/in/connor-smith134" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script>
+  // ── Certificate toggle ────────────────────────────────────────
+  function toggleCert(btn) {
+    const wrap = btn.nextElementSibling;
+    const opening = wrap.classList.toggle('open');
+    btn.textContent = opening ? 'Hide Certificate' : 'See Certificate';
+  }
+
+  // ── Lightbox ──────────────────────────────────────────────────
+  document.querySelectorAll('.cert-img-wrap img').forEach(img => {
+    img.addEventListener('click', () => {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox(e) {
+    if (e && e.target !== e.currentTarget && !e.target.closest('.lightbox-close')) return;
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // ── Scroll reveal ─────────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Globe ─────────────────────────────────────────────────────
+  (function () {
+    const canvas = document.getElementById('edu-globe');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const LOCS = [
+      { lat: 42.295, lon: -71.303, label: 'Babson College', idx: 0 },
+      { lat: 47.424, lon:   9.376, label: 'Universität St. Gallen (HSG)',            idx: 1 },
+    ];
+
+    // Seeded RNG (unused but kept for future star-field option)
+    let rotY = 125; // initial rotation centered off California coast (~-125°W)
+    let W, H, R, CX, CY;
+    let dragX = 0, dragRot = 0, dragging = false;
+
+    function resize() {
+      W = canvas.offsetWidth;
+      H = Math.round(W * 0.76);
+      canvas.width  = W;
+      canvas.height = H;
+      canvas.style.height = H + 'px';
+      CX = W / 2; CY = H / 2;
+      R  = W * 0.345;
+      draw();
+    }
+
+    const r2d = d => d * Math.PI / 180;
+
+    function proj(lat, lon) {
+      const ph = r2d(lat), lm = r2d(lon + rotY);
+      const x = Math.cos(ph) * Math.sin(lm);
+      const y = Math.sin(ph);
+      const z = Math.cos(ph) * Math.cos(lm);
+      return { sx: CX + R * x, sy: CY - R * y, z };
+    }
+
+    // Coastline rings loaded from Natural Earth 1:50m via world-atlas CDN
+    let LANDS = [];
+
+    // Returns true when every vertex is on the front hemisphere — safe to fill()
+    function polyLine(poly) {
+      let on = false, safe = true;
+      ctx.beginPath();
+      poly.forEach(([lo, la]) => {
+        const p = proj(la, lo);
+        if (p.z > 0) { on ? ctx.lineTo(p.sx, p.sy) : ctx.moveTo(p.sx, p.sy); on = true; }
+        else { on = false; safe = false; }
+      });
+      return safe;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Sphere background
+      const bg = ctx.createRadialGradient(CX - R*0.22, CY - R*0.22, R*0.04, CX, CY, R);
+      bg.addColorStop(0, '#1d1d1d');
+      bg.addColorStop(0.65, '#0e0e0e');
+      bg.addColorStop(1, '#050505');
+      ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI*2);
+      ctx.fillStyle = bg; ctx.fill();
+
+      // Clip to sphere
+      ctx.save();
+      ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI*2); ctx.clip();
+
+      // Latitude grid
+      ctx.strokeStyle = 'rgba(158,163,168,0.09)'; ctx.lineWidth = 0.5;
+      [-60,-30,30,60].forEach(lat => {
+        const pts = []; for (let lo=-180;lo<=180;lo+=2) pts.push([lo,lat]);
+        polyLine(pts); ctx.stroke();
+      });
+      // Equator
+      ctx.strokeStyle = 'rgba(158,163,168,0.2)'; ctx.lineWidth = 0.8;
+      const eq = []; for (let lo=-180;lo<=180;lo+=2) eq.push([lo,0]);
+      polyLine(eq); ctx.stroke();
+
+      // Longitude grid
+      ctx.strokeStyle = 'rgba(158,163,168,0.09)'; ctx.lineWidth = 0.5;
+      for (let lo=-180;lo<180;lo+=30) {
+        const pts = []; for (let la=-90;la<=90;la+=2) pts.push([lo,la]);
+        polyLine(pts); ctx.stroke();
+      }
+
+      // Landmasses — outline only
+      ctx.strokeStyle = 'rgba(158,163,168,0.52)'; ctx.lineWidth = 0.8;
+      LANDS.forEach(poly => { polyLine(poly); ctx.stroke(); });
+
+      ctx.restore();
+
+      // Sphere border
+      ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(158,163,168,0.28)'; ctx.lineWidth = 1.5; ctx.stroke();
+
+      // Pins
+      const pins = [];
+      LOCS.forEach((loc) => {
+        const p = proj(loc.lat, loc.lon);
+        if (p.z > 0.04) {
+          const alpha = Math.min(1, (p.z - 0.04) / 0.2);
+          pins.push({ sx: p.sx, sy: p.sy, alpha, loc });
+        }
+      });
+
+      pins.forEach((pin) => {
+        const { sx, sy, alpha, loc } = pin;
+        ctx.globalAlpha = alpha;
+        const stemH = R * 0.13;
+        const dr    = R * 0.022;
+        const lw    = Math.max(1.5, R * 0.003);
+
+        // Stem
+        ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(sx, sy - stemH);
+        ctx.strokeStyle = '#C8B89A'; ctx.lineWidth = lw; ctx.stroke();
+
+        // Head dot
+        ctx.beginPath(); ctx.arc(sx, sy - stemH, dr, 0, Math.PI*2);
+        ctx.fillStyle = '#C8B89A'; ctx.fill();
+        ctx.strokeStyle = 'rgba(0,0,0,0.7)'; ctx.lineWidth = 1.2; ctx.stroke();
+
+        // Flag label
+        const fs  = Math.max(11, Math.round(R * 0.028));
+        ctx.font  = `500 ${fs}px "IBM Plex Mono",monospace`;
+        const tw  = ctx.measureText(loc.label).width;
+        const fp  = fs * 0.55, fh = fs * 1.65;
+        const fw  = tw + fp * 2;
+        // Flip left if near right edge
+        const fx  = (sx + dr + fw + 6 < W) ? sx + dr * 1.8 : sx - dr * 1.8 - fw;
+        const fy  = sy - stemH - fh * 0.5 - dr;
+
+        ctx.fillStyle   = 'rgba(10,10,10,0.93)';
+        ctx.strokeStyle = 'rgba(200,184,154,0.7)';
+        ctx.lineWidth   = 0.9;
+        ctx.beginPath(); ctx.rect(fx, fy, fw, fh);
+        ctx.fill(); ctx.stroke();
+
+        ctx.fillStyle = '#C8B89A';
+        ctx.fillText(loc.label, fx + fp, fy + fh * 0.67);
+        ctx.globalAlpha = 1;
+
+        // Store banner rect for click detection
+        pin.fx = fx; pin.fy = fy; pin.fw = fw; pin.fh = fh;
+        pin.stemH = stemH; pin.dr = dr;
+      });
+
+      canvas._pins = pins;
+    }
+
+    // Scroll-driven rotation
+    window.addEventListener('scroll', () => {
+      const vh = window.innerHeight;
+      const cvRect = canvas.getBoundingClientRect();
+      const scrolled = vh - cvRect.top;
+      const total = vh + canvas.offsetHeight;
+      const p = Math.max(scrolled / total, 0);
+      rotY = 160 - p * 350;
+      draw();
+    }, { passive: true });
+
+    // Mouse drag
+    canvas.addEventListener('mousedown', e => {
+      dragging = true; dragX = e.clientX; dragRot = rotY;
+      canvas.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      rotY = dragRot + (e.clientX - dragX) * 0.22; draw();
+    });
+    window.addEventListener('mouseup', () => {
+      dragging = false; canvas.style.cursor = 'grab';
+    });
+
+    // Touch drag
+    canvas.addEventListener('touchstart', e => { dragX = e.touches[0].clientX; dragRot = rotY; }, { passive: true });
+    canvas.addEventListener('touchmove',  e => { rotY = dragRot + (e.touches[0].clientX - dragX) * 0.22; draw(); }, { passive: true });
+
+    // Click pin or banner → scroll to card
+    canvas.addEventListener('click', e => {
+      if (!canvas._pins?.length) return;
+      const br = canvas.getBoundingClientRect();
+      const mx = (e.clientX - br.left) * (W / br.width);
+      const my = (e.clientY - br.top)  * (H / br.height);
+      canvas._pins.forEach(({ sx, sy, stemH, dr, fx, fy, fw, fh, loc }) => {
+        const dotY    = sy - (stemH ?? R * 0.13);
+        const inDot   = Math.hypot(mx - sx, my - dotY) < (dr ?? R * 0.022) * 2.5;
+        const inBanner = fx != null && mx >= fx && mx <= fx + fw && my >= fy && my <= fy + fh;
+        if (inDot || inBanner) {
+          document.querySelectorAll('.edu-card')[loc.idx]
+            ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+
+    // Pointer cursor when hovering pin or banner
+    canvas.addEventListener('mousemove', e => {
+      if (dragging || !canvas._pins?.length) return;
+      const br = canvas.getBoundingClientRect();
+      const mx = (e.clientX - br.left) * (W / br.width);
+      const my = (e.clientY - br.top)  * (H / br.height);
+      const hit = canvas._pins.some(({ sx, sy, stemH, dr, fx, fy, fw, fh }) => {
+        const dotY = sy - (stemH ?? R * 0.13);
+        return Math.hypot(mx - sx, my - dotY) < (dr ?? R * 0.022) * 2.5
+            || (fx != null && mx >= fx && mx <= fx + fw && my >= fy && my <= fy + fh);
+      });
+      canvas.style.cursor = hit ? 'pointer' : 'grab';
+    });
+
+    // Minimal TopoJSON decoder — no external library needed
+    function decodeTopoLand(topo) {
+      const [sx, sy] = topo.transform.scale;
+      const [tx, ty] = topo.transform.translate;
+      // Delta-decode quantized arcs → [lon, lat] arrays
+      const arcs = topo.arcs.map(arc => {
+        let x = 0, y = 0;
+        return arc.map(([dx, dy]) => [x += dx, y += dy])
+                  .map(([qx, qy]) => [qx * sx + tx, qy * sy + ty]);
+      });
+      function buildRing(indices) {
+        const pts = [];
+        for (const idx of indices) {
+          const arc = idx >= 0 ? arcs[idx] : [...arcs[~idx]].reverse();
+          pts.push(...(pts.length ? arc.slice(1) : arc));
+        }
+        return pts;
+      }
+      const polys = [];
+      function addGeom(geom) {
+        if (!geom) return;
+        if (geom.type === 'Polygon') {
+          polys.push(buildRing(geom.arcs[0]));
+        } else if (geom.type === 'MultiPolygon') {
+          geom.arcs.forEach(r => polys.push(buildRing(r[0])));
+        } else if (geom.type === 'GeometryCollection') {
+          geom.geometries.forEach(addGeom);
+        }
+      }
+      addGeom(topo.objects.land);
+      return polys;
+    }
+
+    // Load Natural Earth 1:50m land polygons once and cache in LANDS
+    fetch('land-50m.json')
+      .then(r => r.json())
+      .then(topo => { LANDS = decodeTopoLand(topo); draw(); });
+
+    window.addEventListener('load',   resize);
+    window.addEventListener('resize', resize);
+  })();
+
+  // ── Candlestick chart ──────────────────────────────────────────
+  (function () {
+    const canvas = document.getElementById('hero-chart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const TOTAL = 72;
+
+    // Seeded RNG so candles are consistent across reloads
+    let _s = 2718281828;
+    const rng = () => { _s = (_s * 1664525 + 1013904223) & 0xffffffff; return (_s >>> 0) / 0xffffffff; };
+
+    // Generate candles: strong upward drift with realistic variability
+    const candles = (() => {
+      const arr = [];
+      let price = 40;
+      for (let i = 0; i < TOTAL; i++) {
+        const drift   = 0.72;
+        const vol     = 2.6;
+        const open    = price;
+        const move    = drift + (rng() - 0.44) * vol * 2;
+        const close   = open + move;
+        const wickUp  = rng() * vol * 0.75;
+        const wickDn  = rng() * vol * 0.55;
+        const high    = Math.max(open, close) + wickUp;
+        const low     = Math.min(open, close) - wickDn;
+        arr.push({ open, close, high, low });
+        price = close;
+      }
+      return arr;
+    })();
+
+    let currentVisible = 0;
+    let targetVisible  = 36;
+    let rafId = null;
+
+    function syncSize() {
+      const h1   = document.querySelector('.hero-name');
+      const wrap = canvas.parentElement;
+      if (!h1 || !wrap) return;
+      const h1W  = h1.offsetWidth;
+      const wrapW = wrap.offsetWidth;
+      const gap   = parseFloat(getComputedStyle(wrap).gap) || 48;
+      const w     = Math.max(80, wrapW - h1W - gap);
+      const h     = h1.offsetHeight;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width  = w;
+        canvas.height = h;
+      }
+    }
+
+    function draw() {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const count = Math.max(3, Math.min(TOTAL, Math.round(currentVisible)));
+      const visible = candles.slice(0, count);
+
+      const padT = h * 0.07, padB = h * 0.11;
+      const padL = 10, padR = 6;
+      const chartW = w - padL - padR;
+      const chartH = h - padT - padB;
+
+      const prices  = visible.flatMap(c => [c.high, c.low]);
+      const minP    = Math.min(...prices);
+      const maxP    = Math.max(...prices);
+      const range   = (maxP - minP) || 1;
+      const toY     = p => padT + chartH - ((p - minP) / range) * chartH;
+
+      const spacing = chartW / visible.length;
+      const bodyW   = Math.max(2, spacing * 0.38);
+
+      // Horizontal grid lines
+      ctx.strokeStyle = 'rgba(158,163,168,0.08)';
+      ctx.lineWidth = 0.5;
+      for (let i = 1; i <= 3; i++) {
+        const y = padT + (chartH / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(padL, y);
+        ctx.lineTo(w - padR, y);
+        ctx.stroke();
+      }
+
+      // Y-axis line
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(158,163,168,0.38)';
+      ctx.lineWidth = 1;
+      ctx.moveTo(padL, padT);
+      ctx.lineTo(padL, padT + chartH);
+      ctx.stroke();
+
+      // X-axis line
+      ctx.beginPath();
+      ctx.moveTo(padL, padT + chartH);
+      ctx.lineTo(w - padR, padT + chartH);
+      ctx.stroke();
+
+      // X-axis tick marks
+      ctx.strokeStyle = 'rgba(158,163,168,0.3)';
+      ctx.lineWidth = 0.75;
+      const tickEvery = Math.max(1, Math.floor(visible.length / 6));
+      for (let i = 0; i < visible.length; i += tickEvery) {
+        const cx = padL + i * spacing + spacing * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(cx, padT + chartH);
+        ctx.lineTo(cx, padT + chartH + 4);
+        ctx.stroke();
+      }
+
+      // Candles
+      visible.forEach((c, i) => {
+        const cx      = padL + i * spacing + spacing * 0.5;
+        const openY   = toY(c.open);
+        const closeY  = toY(c.close);
+        const highY   = toY(c.high);
+        const lowY    = toY(c.low);
+        const bullish = c.close >= c.open;
+
+        // Last candle brighter to act as "current price"
+        const isLast = i === visible.length - 1;
+        const alpha  = isLast ? 1 : (bullish ? 0.78 : 0.55);
+        const color  = bullish
+          ? `rgba(220, 216, 208, ${alpha})`   // off-white/cream
+          : `rgba(140, 146, 152, ${alpha})`;  // steel
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth   = 1;
+
+        // Wick
+        ctx.beginPath();
+        ctx.moveTo(cx, highY);
+        ctx.lineTo(cx, lowY);
+        ctx.stroke();
+
+        // Hollow body
+        const bodyTop = Math.min(openY, closeY);
+        const bodyH   = Math.max(1.5, Math.abs(closeY - openY));
+        ctx.lineWidth = isLast ? 1.5 : 1;
+        ctx.strokeRect(Math.round(cx - bodyW / 2), Math.round(bodyTop), Math.round(bodyW), Math.round(bodyH));
+      });
+
+      // Faint closing-price trail line
+      if (visible.length > 1) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(200,184,154,0.12)';
+        ctx.lineWidth = 0.75;
+        visible.forEach((c, i) => {
+          const cx = padL + i * spacing + spacing * 0.5;
+          i === 0 ? ctx.moveTo(cx, toY(c.close)) : ctx.lineTo(cx, toY(c.close));
+        });
+        ctx.stroke();
+      }
+    }
+
+    function tick() {
+      const diff = targetVisible - currentVisible;
+      if (Math.abs(diff) < 0.04) {
+        currentVisible = targetVisible;
+        rafId = null;
+        draw();
+        return;
+      }
+      currentVisible += diff * 0.18;
+      draw();
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function onScroll() {
+      const hero     = document.querySelector('.hero');
+      const progress = Math.min(Math.max(window.scrollY / (hero.offsetHeight * 0.5), 0), 1);
+      targetVisible  = 36 + progress * (TOTAL - 36);
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    // Initial animated draw-in
+    function animateIn() {
+      const start = performance.now();
+      const dur   = 1100;
+      (function frame(now) {
+        const t = Math.min((now - start) / dur, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - t, 3);
+        currentVisible = eased * 36;
+        draw();
+        if (t < 1) requestAnimationFrame(frame);
+      })(start);
+    }
+
+    function init() {
+      syncSize();
+      animateIn();
+    }
+
+    window.addEventListener('load', init);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { syncSize(); draw(); });
+  })();
+</script>
+</body>
+</html>
