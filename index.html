@@ -582,6 +582,17 @@
       border: 1px solid rgba(0,0,0,0.12);
     }
     .edu-globe:active { cursor: grabbing; }
+    .globe-hint {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      color: rgba(158,163,168,0.4);
+      margin-top: -3.5rem;
+      margin-bottom: 5rem;
+      pointer-events: none;
+      user-select: none;
+    }
 
     .cert-issuer {
       font-size: 0.56rem;
@@ -779,7 +790,7 @@
     <a href="#education">Education</a>
     <a href="#experience">Experience</a>
     <a href="#leadership">Leadership</a>
-    <a href="#certifications">Credentials</a>
+    <a href="#certifications">Certifications</a>
   </div>
 </nav>
 
@@ -814,6 +825,7 @@
   <h2 class="section-heading reveal">EDUCATION</h2>
 
   <canvas id="edu-globe" class="edu-globe reveal"></canvas>
+  <p class="globe-hint">← drag to rotate →</p>
 
   <div class="edu-grid">
     <div class="edu-card reveal reveal-d1">
@@ -966,8 +978,8 @@
 <!-- CERTIFICATIONS -->
 <section class="section section-alt" id="certifications">
   <span class="section-ghost" aria-hidden="true">04</span>
-  <p class="section-eyebrow reveal">04 / Credentials</p>
-  <h2 class="section-heading reveal">CREDENTIALS</h2>
+  <p class="section-eyebrow reveal">04 / Certifications</p>
+  <h2 class="section-heading reveal">CERTIFICATIONS</h2>
 
   <div class="cert-grid">
     <div class="cert-card reveal reveal-d1">
@@ -982,28 +994,37 @@
     <div class="cert-card reveal reveal-d2">
       <span class="cert-num" aria-hidden="true">02</span>
       <span class="cert-issuer">Wall Street Prep</span>
-      <span class="cert-name">Discounted Cash Flow Valuation</span>
+      <span class="cert-name">Discounted Cash Flow (DCF) Modeling</span>
       <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
       <div class="cert-img-wrap">
-        <img src="assets/dcf.png" alt="Discounted Cash Flow Valuation Certificate">
+        <img src="assets/dcf.png" alt="Discounted Cash Flow (DCF) Modeling Certificate">
       </div>
     </div>
     <div class="cert-card reveal reveal-d3">
       <span class="cert-num" aria-hidden="true">03</span>
       <span class="cert-issuer">Johns Hopkins University</span>
-      <span class="cert-name">Excel Basics</span>
+      <span class="cert-name">Business Analytics with Excel</span>
       <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
       <div class="cert-img-wrap">
-        <img src="assets/excel.png" alt="Excel Basics Certificate">
+        <img src="assets/excel.png" alt="Business Analytics with Excel Certificate">
       </div>
     </div>
     <div class="cert-card reveal" style="transition-delay:0.32s;">
       <span class="cert-num" aria-hidden="true">04</span>
       <span class="cert-issuer">Wall Street Prep</span>
-      <span class="cert-name">LBO Modeling</span>
+      <span class="cert-name">Leveraged Buyout (LBO) Modeling</span>
       <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
       <div class="cert-img-wrap">
-        <img src="https://placehold.co/800x560/F0EDE7/9EA3A8?text=Certificate+Coming+Soon" alt="LBO Modeling Certificate">
+        <img src="assets/lbo.png" alt="Leveraged Buyout (LBO) Modeling Certificate">
+      </div>
+    </div>
+    <div class="cert-card reveal" style="transition-delay:0.40s;">
+      <span class="cert-num" aria-hidden="true">05</span>
+      <span class="cert-issuer">Wall Street Prep</span>
+      <span class="cert-name">Trading Comps Modeling</span>
+      <button class="cert-btn" onclick="toggleCert(this)">See Certificate</button>
+      <div class="cert-img-wrap">
+        <img src="assets/trading-comps.png" alt="Trading Comps Modeling Certificate">
       </div>
     </div>
   </div>
