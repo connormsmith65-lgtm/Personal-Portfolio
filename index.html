@@ -304,8 +304,18 @@
       border-top: 4px solid var(--steel);
       padding: 2.8rem;
       background: var(--bg-light);
+      position: relative;
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
                   box-shadow 0.2s ease;
+    }
+    .edu-flag {
+      position: absolute;
+      top: 2.8rem;
+      right: 2.8rem;
+      width: 3.8rem;
+      opacity: 0.7;
+      pointer-events: none;
+      user-select: none;
     }
     .edu-card:hover {
       transform: translate(-3px, -3px);
@@ -400,8 +410,16 @@
     .exp-item:nth-child(even) .exp-left { border-left: 4px solid var(--sand); }
     .exp-right {
       padding: 2.4rem 2.8rem;
+      display: flex;
+      align-items: center;
     }
 
+    .exp-logo {
+      display: block;
+      width: 6rem;
+      height: auto;
+      margin-bottom: 0.8rem;
+    }
     .exp-company {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.7rem;
@@ -829,6 +847,7 @@
 
   <div class="edu-grid">
     <div class="edu-card reveal reveal-d1">
+      <img src="assets/united-states-flag.png" alt="United States" class="edu-flag">
       <div class="edu-tag">Primary Institution</div>
       <h3 class="edu-school">Babson College<br>School of Business</h3>
       <p class="edu-degree">Bachelor of Science in Business Administration<br>Concentration in Finance and Economics</p>
@@ -844,6 +863,7 @@
     </div>
 
     <div class="edu-card reveal reveal-d2" style="background:var(--bg-mid);">
+      <img src="assets/swiss-flag.png" alt="Switzerland" class="edu-flag">
       <div class="edu-tag">Exchange</div>
       <h3 class="edu-school">Universität<br>St. Gallen (HSG)</h3>
       <p class="edu-degree">Incoming Exchange Student</p>
@@ -868,6 +888,7 @@
   <div class="exp-list">
     <div class="exp-item reveal">
       <div class="exp-left">
+        <img src="assets/dwhp-logo.png" alt="DW Healthcare Partners" class="exp-logo">
         <h3 class="exp-company">DW Healthcare Partners</h3>
         <p class="exp-role">Private Equity Analyst</p>
         <p class="exp-date">May 2026 – July 2026<br>Park City, UT</p>
@@ -882,6 +903,7 @@
 
     <div class="exp-item reveal">
       <div class="exp-left">
+        <img src="assets/Kitchin-logo.png" alt="Kitchin" class="exp-logo">
         <h3 class="exp-company">Kitchin</h3>
         <p class="exp-role">Contracted Software Development</p>
         <p class="exp-date">December 2025 – March 2026<br>Park City, UT</p>
@@ -897,6 +919,7 @@
 
     <div class="exp-item reveal">
       <div class="exp-left">
+        <img src="assets/plai-logo.png" alt="Plai" class="exp-logo">
         <h3 class="exp-company">Plai</h3>
         <p class="exp-role">Co-Founder</p>
         <p class="exp-date">September 2024 – November 2025<br>Park City, UT</p>
@@ -912,6 +935,7 @@
 
     <div class="exp-item reveal">
       <div class="exp-left">
+        <img src="assets/buc-logo.jpeg" alt="Babson Urban Collective" class="exp-logo">
         <h3 class="exp-company">Babson Urban Collective</h3>
         <p class="exp-role">CFO</p>
         <p class="exp-date">August 2024 – May 2025<br>Wellesley, MA</p>
